@@ -1,0 +1,40 @@
+\documentclass{beamer}
+\usepackage[pantone3282]{wwustyle}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage[style=ieee, backend=biber]{biblatex}
+\addbibresource{res/literatur.bib}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\usepackage{graphicx}
+\graphicspath{{res/}{img/}{../img/}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+
+\title[short title]{Title} %TODO add title
+\subtitle{Subtitle} %TODO add subtitle
+\institutelogo{}
+\institutelogosmall{}
+\author{Autor 1, Autor 2, Autor 3} %TODO add author
+\date{01.01.1970} %TODO add date
+
+\begin{document}
+
+% Title
+\begin{frame}[plain]
+\maketitle
+\end{frame}
+
+\input{content/Intro.tex}
+
+% Print bibliography
+% \begin{frame}[t,allowframebreaks]
+% \frametitle{Sources}
+% 	\printbibliography
+% \end{frame}
+
+\end{document}
