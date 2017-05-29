@@ -18,9 +18,6 @@ t0 = 0.             # integration start time
 t1 = 10.            # integration end time
 dt = 0.01           # time step
 
-# implementation configuration
-plotEvery = 1
-
 
 # the rhs of the equation of the system
 def rhs(t, y, R, L, C):
@@ -35,7 +32,6 @@ r = ode(rhs).set_integrator('dopri5')
 r.set_initial_value(y0, t0).set_f_params(R, L, C)
 
 # integration and output
-i = 0
 with open("out/output.dat", "w+") as outputFile:
     print("t\tP1\tQ2", file=outputFile)
     while r.successful() and r.t < t1:
