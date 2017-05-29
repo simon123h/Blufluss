@@ -8,15 +8,15 @@ R = 1.              # viscosity
 L = 1.              # inertia
 C = 1.              # compliance
 Q1 = 1.             # boundary Q
-Q2 = 1.            # initial Q2
-P1 = 1.            # initial P1
+Q2 = 1.             # initial Q2
+P1 = 1.             # initial P1
 P2 = 1.             # boundary P
 
 # mathematical initial values
 y0 = [P1, Q2]       # initial (pressure P, flow rate Q)
 t0 = 0.             # integration start time
 t1 = 10.            # integration end time
-dt = 0.01            # time step
+dt = 0.01           # time step
 
 # implementation configuration
 plotEvery = 1
