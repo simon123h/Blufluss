@@ -18,13 +18,20 @@ class Compartment(object):
         self.P2 = P2             # boundary P2
 
         # initial values (pressure P, flow rate Q)
-        self.y0 = [P1, Q2]
+        # after integration, this vector is updated with new values
+        # extract state variable data from this variable
+        self.y = [P1, Q2]
 
         # integration configuration: dopri5 --> Runge-Kutta 4
         self.r = ode(self.rhs).set_integrator(Compartment.integrator)
-        self.r.set_initial_value(self.y0, Compartment.t0)
+        self.r.set_initial_value(self.y, Compartment.t0)
+
+        # to each end connected compartments
+        self.neighbours1 = []
+        self.neighbours2 = []
 
     # Setter
+    # TODO: ersetze mit formel durch setDiameter...
     def setR(self, val):
         self.R = val
 
@@ -40,6 +47,21 @@ class Compartment(object):
 
     def setInitial(self, P1, Q2):
         self.y = [P1, Q2]
+
+    # if not connected already, add compartment to the list of neighbours
+    # always connects to end #1 of self to end #2 of other
+    def addNeighbour(self, other):
+        if other not in self.neighbours1:
+            self.neighbours1 += [other]
+        if self not in other.neighbours2:
+            other.neighbours2 += [self]
+
+    # generate new boundary variables P2 and Q1 from connected compartments
+    def communicate(self):
+        if len(self.neighbours1) != 0:
+            self.P1 = sum([n.P2 for n in self.neighbours1])
+        if len(self.neighbours2) != 0:
+            self.Q2 = sum([n.Q1 for n in self.neighbours2])
 
     # boolean integration status
     @property
@@ -65,5 +87,5 @@ class Compartment(object):
         while self.r.successful() and i < steps:
             self.r.integrate(self.r.t + Compartment.dt)
             i += 1
-        self.y0 = [self.r.y[0], self.r.y[1]]
-        return self.r.y[0], self.r.y[1]
+        self.y = [self.r.y[0], self.r.y[1]]
+        return self.r.t, self.r.y[0], self.r.y[1]
