@@ -1,5 +1,11 @@
 from scipy.integrate import ode
 
+"""
+Class for a single compartment. It contains all related
+physical variables and the integration method. Also it provides
+some functionality for interaction with neighboring compartments.
+"""
+
 
 class Compartment(object):
     # mathematical configuration

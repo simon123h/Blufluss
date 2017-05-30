@@ -1,3 +1,7 @@
+"""
+Class for a set of connected compartments.
+The whole set can be integrated.
+"""
 
 
 class CompartmentSet(object):
