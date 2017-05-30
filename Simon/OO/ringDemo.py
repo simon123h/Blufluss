@@ -6,8 +6,7 @@ from cmptSet import CmptSet
 from subprocess import Popen, PIPE
 
 tMax = 20.              # integration end time
-Compartment.dt = 0.1    # time step size
-Compartment.t0 = 0.     # integration start time
+dt = 0.1                # time step size
 
 # generate a ring of connected compartments
 ringLength = 51
@@ -27,7 +26,8 @@ with open("out/ringP.dat", "w+") as outputFileP:
     with open("out/ringQ.dat", "w+") as outputFileQ:
         t = Compartment.t0
         while t < tMax:
-            t = cmptRing.integrate()
+            t += dt
+            cmptRing.integrate(t)
             # print to file
             print(" ".join([str(v) for v in cmptRing.getPvals()]), file=outputFileP)
             print(" ".join([str(v) for v in cmptRing.getQvals()]), file=outputFileQ)

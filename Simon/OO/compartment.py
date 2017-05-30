@@ -4,7 +4,6 @@ from scipy.integrate import ode
 class Compartment(object):
     # mathematical configuration
     t0 = 0.             # integration start time
-    dt = 0.1           # time step
     integrator = "dopri5"
 
     def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
@@ -62,6 +61,8 @@ class Compartment(object):
         other.communicate()
 
     # generate new boundary variables P2 and Q1 from connected compartments
+    # TODO: passt das so gut fuer Verzweigungen?
+    # TODO: ggf. eigene Connector-Klasse fuer besondere Verzweigungen
     def communicate(self):
         if len(self.neighbours1) != 0:
             self.P2 = sum([n.P1 for n in self.neighbours1])
@@ -93,12 +94,12 @@ class Compartment(object):
         return [(self.Q1 - Q2) / self.C,
                 (P1 - self.P2 - self.R * Q2) / self.L]
 
-    # integrate this single compartment for an arbitrary number of RK4 steps
-    # returns the integration variables P1 and Q2
-    def integrate(self, steps=1):
+    # integrate this single compartment up to time t with an arbitrary
+    #  number of RK4 steps. returns the integration variables P1 and Q2
+    def integrate(self, t, steps=1):
         i = 0
         while self.r.successful() and i < steps:
-            self.r.integrate(self.r.t + Compartment.dt)
             i += 1
+            self.r.integrate(t * i / float(steps))
         self.y = self.r.y
-        return self.t, self.P1, self.Q2
+        return self.P1, self.Q2
