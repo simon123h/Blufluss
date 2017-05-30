@@ -15,8 +15,8 @@
 
 	## axis range
 		set xrange [0:*]
-		set yrange [*:*]
-		set y2range [*:*]
+		set yrange [0:*]
+		set y2range [0:*]
 
 	## tics on the axes, background grid, key position
     set ytics nomirror
@@ -26,14 +26,6 @@
     set my2tics
 		# set grid
 		# set key bmargin
-
-	## set comma as decimal value separator
-		#set decimalsign locale "german"
-		#set decimalsign ','
-
-	## fit log
-		set fit logfile "fit.log"
-		set fit quiet
 
 
 
