@@ -1,6 +1,6 @@
 
 
-class CmptSet(object):
+class CompartmentSet(object):
     def __init__(self, *compartments):
         self.compartments = list(compartments)
 

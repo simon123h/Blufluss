@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 from compartment import Compartment
-from cmptSet import CmptSet
+from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
 tMax = 20.              # integration end time
@@ -19,7 +19,7 @@ cmpts[24].setInitial(P1=0.7, Q2=0.)
 cmpts[25].setInitial(P1=1., Q2=0.)
 cmpts[26].setInitial(P1=0.7, Q2=0.)
 
-cmptRing = CmptSet(*cmpts)
+cmptRing = CompartmentSet(*cmpts)
 
 # integration and output
 with open("out/ringP.dat", "w+") as outputFileP:
