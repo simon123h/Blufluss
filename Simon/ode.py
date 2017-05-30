@@ -15,7 +15,7 @@ P2 = 1.             # boundary P
 # mathematical initial values
 y0 = [P1, Q2]       # initial (pressure P, flow rate Q)
 t0 = 0.             # integration start time
-t1 = 10.            # integration end time
+t1 = 20.            # integration end time
 dt = 0.01           # time step
 
 

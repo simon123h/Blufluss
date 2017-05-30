@@ -15,15 +15,19 @@ class CmptSet(object):
             # integrate all compartments separately
             for cmpt in self.compartments:
                 t, _, _ = cmpt.integrate(steps)
-            # update each compartments bounds from connected compartments
-            for cmpt in self.compartments:
-                cmpt.communicate()
+            # update each compartment bounds
+            self.communicate()
             return t
+
+    # update each compartments bounds from connected compartments
+    def communicate(self):
+        for cmpt in self.compartments:
+            cmpt.communicate()
 
     # get Q values of each compartment in the set
     def getQvals(self):
-        return [c.y[1] for c in self.compartments]
+        return [c.Q2 for c in self.compartments]
 
     # get P values of each compartment in the set
     def getPvals(self):
-        return [c.y[0] for c in self.compartments]
+        return [c.P1 for c in self.compartments]

@@ -14,7 +14,7 @@
 		set y2label 'Q2'
 
 	## axis range
-		set xrange [0:10]
+		set xrange [0:*]
 		set yrange [*:*]
 		set y2range [*:*]
 
