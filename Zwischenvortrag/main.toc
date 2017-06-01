@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.33pt}
+\select@language {ngerman}
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {2}{Herleitung des 0D-Modells}{5}{0}{2}
+\beamer@sectionintoc {3}{Das 0D-Modell}{7}{0}{3}
+\beamer@sectionintoc {4}{Simulation}{11}{0}{4}
+\beamer@sectionintoc {5}{Fazit}{13}{0}{5}

@@ -1,18 +1,30 @@
 \documentclass{beamer}
 \usepackage[pantone3282]{wwustyle}
-\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 
-\usepackage[style=ieee, backend=biber]{biblatex}
-\addbibresource{res/literatur.bib}
-\setbeamertemplate{bibliography item}{\insertbiblabel}
+% \usepackage[style=verbose, backend=biber]{biblatex}
+%\addbibresource{res/literatur.bib}
+%\setbeamertemplate{bibliography item}{\insertbiblabel}
 
 \usepackage{graphicx}
 \graphicspath{{res/}{img/}{../img/}}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{siunitx}
+
+% Section-Ueberschrift Slides
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 
 
 \title[short title]{Title} %TODO add title
@@ -29,7 +41,12 @@
 \maketitle
 \end{frame}
 
-\input{content/Intro.tex}
+\input{content/0_Intro.tex}
+\input{content/1_Motivation.tex}
+\input{content/2_Herleitung.tex}
+\input{content/3_Modell.tex}
+\input{content/4_Simulation.tex}
+\input{content/5_Fazit.tex}
 
 % Print bibliography
 % \begin{frame}[t,allowframebreaks]
