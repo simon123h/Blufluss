@@ -12,3 +12,6 @@
 **.out
 **.synctex.gz
 **.pyc
+**.toc
+**.nav
+**.snm
