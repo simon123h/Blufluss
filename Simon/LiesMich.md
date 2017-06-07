@@ -26,3 +26,9 @@ aufrufen, um eine Grafik zu erstellen. Alternativ kann man diesen auch selber au
 
 
 Die Output-Daten sowie die Grafik befinden sich im "out"-Ordner.
+
+
+## Weiteres
+Das skript fancyplot.plt kann schönere Plots im PDF Format erstellen.
+
+In der Datei terminalVessel.py versuche ich die Terminal Vessels zu simulieren.

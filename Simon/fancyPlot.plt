@@ -14,9 +14,9 @@
 		set y2label 'Q2 [a.u.]'
 
 	## axis range
-		set xrange [0:*]
-		set yrange [0:2.5]
-		set y2range [0:2.5]
+		set xrange [*:*]
+		set yrange [*:*]
+		set y2range [*:*]
 
 	## tics on the axes, background grid, key position
     set ytics nomirror
