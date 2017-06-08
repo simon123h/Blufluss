@@ -1,0 +1,90 @@
+\section{Herleitung des 1D-Modells}
+
+\begin{frame}
+\frametitle{Notizen}
+
+HERLEITUNG DES 1D Models
+
+Reynolds Transport Theorem Gl. 10.1
+  undurchlässige Wand
+
+Flächenmittelung Gl. 10.3
+
+Welche Annahmen getroffen?
+
+Gl. 10.5
+
+Gl. 10.7 und die Gleichung davor... Irgendwie, damit der Übergang von
+10.1 zu 10.7 klar wird
+
+Conservation of mass
+Conservation of momentum
+  p einführen über Stress Tensor (Annahme)
+
+gemitteltes $u^2$ annähern (Annahme)
+gemitteltes d annähern (10.19) (Annahme)
+
+3 Unbekannte in 2 Gleichungen -> Eine zusätzliche Bedingung -> Simplified
+Models of wall mechanics, einfache Beziehung angeben (eine Zeile) (Annahme)
+
+
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Herleitung}
+
+  Reynolds Transport Theorem:
+  \begin{align}
+    \frac{d}{dt} \int_{V_t} f dV = \int_{V_t} \frac{\partial f}{\partial t}dV + \int_{\partial V_t} f \vec u_w \cdot \vec n d\sigma \label{10.1} % 10.1
+  \end{align}
+
+  \begin{center}
+      \includegraphics[width=0.5\textwidth]{vessel}
+  \end{center}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Herleitung}
+
+  Mittelung über Querschnitt:
+  \begin{align}
+    \bar f = \frac{1}{A} \int_S f d\sigma % 10.3
+  \end{align}
+  Damit lhs:
+  \begin{align}
+    \frac{d}{dt} \int_{V_t} f dV = \int_{x_1}^{x_2} \frac{\partial}{\partial t} (A \bar f) dx % 10.5
+  \end{align}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Herleitung}
+  aus rhs mit Gauß-Theorem:
+  \begin{equation}
+  \begin{aligned}
+    \int_{\partial V_t} f \vec u_w \cdot \vec n d\sigma = \int_{\partial V_{t, w}} f \vec w \cdot \vec n d\sigma &- \int_{x_1}^{x_2} \frac{\partial}{\partial x} \left[  A (\bar{f u_1}) \right] dx \\&+ \int_{V_t} \nabla \cdot (f \vec u) dV
+  \end{aligned} % 10.6
+\end{equation} %TODO: ist die Formel zu viel?
+In Gl. (\ref{10.1}) \& x-Integration wegfallen lassen:
+\begin{align}
+\boxed{
+\frac{\partial}{\partial t} (A \bar f) + \frac{\partial}{\partial x} \left[ A (\bar{f u_1}) \right] = \int_S \left[ \frac{\partial f}{\partial t}
++ \nabla \cdot (f\vec u) \right] d \sigma
++ \int_{\partial S} f \vec w \cdot \vec n d \gamma} % 10.7
+\end{align}
+\end{frame}
+
+\begin{frame}\frametitle{Herleitung}
+Massenerhaltung:\\~\\
+Setze $f=1$ und $\nabla \cdot \vec u = 0$ (inkompressibel):
+\begin{align}
+  \frac{\partial A}{\partial t} + \frac{\partial}{\partial x} (A \bar u_1) = \int_{\partial S} \vec w \cdot \vec d d\gamma % 10.8
+\end{align}
+\end{frame}
+
+\begin{frame}\frametitle{Herleitung}
+  Impulserhaltung:\\~\\
+  Setze $f=u_1$ und $\nabla \cdot \vec u = 0$:
+\end{frame}
