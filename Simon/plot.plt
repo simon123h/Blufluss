@@ -16,7 +16,7 @@
 	## axis range
 		set xrange [0:*]
 		set yrange [0:*]
-		set y2range [0:*]
+		set y2range [*:*]
 
 	## tics on the axes, background grid, key position
     set ytics nomirror
