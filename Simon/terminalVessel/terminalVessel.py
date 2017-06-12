@@ -14,7 +14,7 @@ P2 = 2500.             # boundary P
 
 # mathematical initial values
 t0 = 0.             # integration start time
-t1 = 10.            # integration end time
+t1 = 150.            # integration end time
 dt = 0.01           # time step
 
 
@@ -29,7 +29,7 @@ r = ode(rhs).set_integrator('dopri5')
 r.set_initial_value(P1, t0)
 
 # integration and output
-with open("./out/output.dat", "w+") as outputFile:
+with open("out/output.dat", "w+") as outputFile:
     # header line
     print("t\tP1\tQ2", file=outputFile)
     # integration loop
@@ -43,4 +43,4 @@ with open("./out/output.dat", "w+") as outputFile:
 
 # call gnuplot for plotting
 # not necessary, but convenient for instant plotting
-Popen("gnuplot ./plot.plt", shell=True, stdout=PIPE)
+Popen("gnuplot plot.plt", shell=True, stdout=PIPE)
