@@ -6,7 +6,7 @@ import os
 # physical inital values
 R = 8333333              # viscosity
 # L = 0.0              # inertia
-C = 1. / 333333              # compliance
+C = 1. / R              # compliance
 Q1 = 0.0003             # boundary Q  0.3 mm/s
 Q2 = 0.0003             # initial Q2
 P1 = 2500.             # initial P1   13 kPa
@@ -15,7 +15,7 @@ P2 = 2500.             # boundary P
 
 # mathematical initial values
 t0 = 0.             # integration start time
-t1 = 150.            # integration end time
+t1 = 10.            # integration end time
 dt = 0.01           # time step
 
 
