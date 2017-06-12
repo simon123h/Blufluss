@@ -1,6 +1,7 @@
 from __future__ import print_function
 from subprocess import PIPE, Popen
 from scipy.integrate import ode
+import os
 
 # physical inital values
 R = 8333333              # viscosity
@@ -22,6 +23,11 @@ dt = 0.01           # time step
 # taken from 10.80 / 10.81
 def rhs(t, P1):
     return [(Q1 - Q2) / C]
+
+
+# generate output folder if it does not yet exist
+if not os.path.exists("out"):
+    os.makedirs("out")
 
 
 # integration configuration: dopri5 --> Runge-Kutta 4

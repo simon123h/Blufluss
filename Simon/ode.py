@@ -1,6 +1,7 @@
 from __future__ import print_function
 from scipy.integrate import ode
 from subprocess import Popen, PIPE
+import os
 
 
 # physical inital values
@@ -25,6 +26,11 @@ def rhs(t, y, R, L, C):
     Q2 = y[1]
     return [(Q1 - Q2) / C,
             (P1 - P2 - R * Q2) / L]
+
+
+# generate output folder if it does not yet exist
+if not os.path.exists("out"):
+    os.makedirs("out")
 
 
 # integration configuration: dopri5 --> Runge-Kutta 4
