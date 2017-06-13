@@ -9,7 +9,7 @@ R = 8333333              # viscosity
 C = 1. / R              # compliance
 Q1 = 0.0003             # boundary Q  0.3 mm/s
 Q2 = 0.0003             # initial Q2
-P1 = 2500.             # initial P1   13 kPa
+P1 = 2500.             # initial P1
 P2 = 2500.             # boundary P
 
 
