@@ -29,8 +29,16 @@
 
 # HERLEITUNG DES 0D Models
 
+- Anna Motivation
+- Stephan Reynolds Transport Theorem
+- Simon Simulation
+
 - Integral für Ortsmittelung angeben, Größen mit Dach einführen
 
 - S. 375 werden zwei Annahmen gemacht, die drauf bringen
 
-- HIER simple Wall Mechanics rein bringen
+- HIER nicht simple Wall Mechanics rein bringen
+
+- Gl. 10.80
+
+- p = P1, q = Q2  --> 10.81
