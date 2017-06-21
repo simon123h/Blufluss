@@ -7,8 +7,8 @@ class Heart(Compartment):
     # constructor
     def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
         # physical inital values
-        R = 8333333             # viscosity
-        L = 0.0                 # inertia
+        R = 2333333             # viscosity
+        L = 1.0                 # inertia
         C = 1. / R              # compliance
         Q1 = 0.0003             # boundary Q  0.3 mm/s
         Q2 = 0.0003             # initial Q2

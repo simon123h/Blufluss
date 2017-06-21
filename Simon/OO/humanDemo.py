@@ -11,16 +11,6 @@ from subprocess import Popen, PIPE
 tMax = 20.              # integration end time
 dt = 0.1                # time step size
 
-
-tv = TerminalVessel()
-t = Compartment.t0
-while t < tMax:
-    t += dt
-    tv.integrate(t)
-    print(tv.P1)
-
-exit()
-
 # generate a ring of connected compartments
 cmpts = [Heart(), Artery(), TerminalVessel(), Artery()]
 cmpts[0].addNeighbour(cmpts[1])
