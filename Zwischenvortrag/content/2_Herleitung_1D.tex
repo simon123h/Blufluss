@@ -34,7 +34,7 @@
   aus rhs mit Gauß-Theorem:
   \begin{equation}
   \begin{aligned}
-    \int_{\partial V_t} f \vec u_w \cdot \vec n d\sigma = \int_{\partial V_{t, w}} f \vec w \cdot \vec n d\sigma &- \int_{x_1}^{x_2} \frac{\partial}{\partial x} \left[  A (\bar{f u_1}) \right] dx \\&+ \int_{V_t} \nabla \cdot (f \vec u) dV
+    \int_{\partial V_{t,w}} f \vec u_w \cdot \vec n d\sigma = \int_{\partial V_{t, w}} f \vec w \cdot \vec n d\sigma &- \int_{x_1}^{x_2} \frac{\partial}{\partial x} \left[  A (\bar{f u_1}) \right] dx \\&+ \int_{V_t} \nabla \cdot (f \vec u) dV
   \end{aligned} % 10.6
 \end{equation} %TODO: ist die Formel zu viel?
 In Gl. (\ref{10.1}) \& x-Integration wegfallen lassen:
@@ -49,7 +49,7 @@ In Gl. (\ref{10.1}) \& x-Integration wegfallen lassen:
 \begin{frame}\frametitle{Massenerhaltung}
 Setze $f=1$ und $\nabla \cdot \vec u = 0$ (inkompressibel):
 \begin{align}
-  \frac{\partial A}{\partial t} + \frac{\partial}{\partial x} (A \bar u_1) = \int_{\partial S} \vec w \cdot \vec d d\gamma % 10.8
+  \frac{\partial A}{\partial t} + \frac{\partial}{\partial x} (A \bar u_1) = \int_{\partial S} \vec w \cdot \vec n d\gamma % 10.8
 \end{align}
 \end{frame}
 
@@ -59,7 +59,7 @@ Setze $f=1$ und $\nabla \cdot \vec u = 0$ (inkompressibel):
 \boxed{
 \frac{\partial}{\partial t} (A \bar u_1) + \frac{\partial}{\partial x} \left[ A \alpha \bar{u}_1^2 \right] = A \bar{f}^b_1 - \frac{A}{\rho}\left(\frac{\partial \vec{p}}{\partial x}\right)- K_R \bar{u}_1 + \int_{\partial S}u_1 \vec{w}\cdot \vec{n}\text{d}\sigma}
 \end{align}
-  mit der Materialableitung $\frac{D}{Dt}=\frac{\partial}{\partial t}+\vec{u}\cdot \nabla$ und dem Korrekturfaktor $\bar{u^2}_1=\alpha \cdot \bar{u}_1^2$. %TODO sagen: alpha?1 z.b. flaches profil
+  mit der Materialableitung $\frac{D}{Dt}=\frac{\partial}{\partial t}+\vec{u}\cdot \nabla$, der Volumenkraft $\bar{f}^b_1$ und dem Korrekturfaktor $\bar{u^2}_1=\alpha \cdot \bar{u}_1^2$. %TODO sagen: alpha?1 z.b. flaches profil
   \end{frame}
 %  \begin{frame}\frametitle{Herleitung}
 %   Mit dem divergenz Theorem, der "constitutive" Gleichung, der Körperkraft pro Volumeneinheit $f^b$ und wieder weglassen von $x$-Integration:
@@ -93,7 +93,7 @@ mit $\beta = \frac{\sqrt{\pi}h_0E}{(1-\nu^2)A_0}$.
 
 \begin{frame}
 \frametitle{\textbf{Endformel}}
-Mit $\alpha=1$ folgt:
+Mit der Annahme, dass die Innenwand undurchlässig ist ($\vec{w}\cdot \vec{n}=0$) und dass die Volumenkraft vernachlässigt werden können ($\bar{f}^b_1=0$), sowie $\alpha=1$ folgt:
 \begin{align}
 \boxed{\frac{\partial \vec{U}}{\partial t}+\frac{\partial \vec{F}}{\partial x}=\vec{S}(\vec{U})}
 \end{align}
