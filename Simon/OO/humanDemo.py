@@ -8,13 +8,13 @@ from heart import Heart
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tMax = 5.              # integration end time
+tMax = 6.              # integration end time
+tEinschwing = 10.
 dt = 0.01                # time step size
 
 
 # generate a ring of connected compartments
 cmpts = [Heart(), Artery(), TerminalVessel(), Artery()]
-cmpts = [Heart(), Artery(), Artery(), Artery()]
 cmpts[0].addNeighbour(cmpts[1])
 cmpts[1].addNeighbour(cmpts[2])
 cmpts[2].addNeighbour(cmpts[3])
@@ -26,12 +26,13 @@ system = CompartmentSet(*cmpts)
 with open("out/humanP.dat", "w+") as outputFileP:
     with open("out/humanQ.dat", "w+") as outputFileQ:
         t = Compartment.t0
-        while t < tMax:
+        while t < tMax + tEinschwing:
             t += dt
             system.integrate(t)
             # print to file
-            print(" ".join([str(v) for v in system.getPvals()]), file=outputFileP)
-            print(" ".join([str(v) for v in system.getQvals()]), file=outputFileQ)
+            if t > tEinschwing:
+                print(" ".join([str(v) for v in system.getPvals()]), file=outputFileP)
+                print(" ".join([str(v) for v in system.getQvals()]), file=outputFileQ)
 
 
 # call gnuplot for plotting

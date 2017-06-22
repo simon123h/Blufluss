@@ -35,7 +35,7 @@
   set label 1 "Herz" at -0.2,-0.2
   set label 2 "Arterie" at 0.8,-0.2
   set label 3 "Muskel" at 1.8,-0.2
-  set label 4 "Arterie" at 2.8,-0.2
+  set label 4 "Vene" at 2.8,-0.2
   plot dataFile matrix using 1:($2/100):3 notitle with image
 
 

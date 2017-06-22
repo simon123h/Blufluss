@@ -7,11 +7,11 @@ class Artery(Compartment):
     # constructor
     def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
         # physical inital values
-        R = 100.0             # viscosity
-        L = 1.0                 # inertia
-        C = 1. / R             # compliance
-        Q1 = 0.000             # boundary Q  0.3 mm/s
-        Q2 = 0.000             # initial Q2
+        R = 800000.             # viscosity
+        L = R                 # inertia
+        C = 0.01 / R             # compliance
+        Q1 = 0.             # boundary Q  0.3 mm/s
+        Q2 = 0.             # initial Q2
         P1 = 2500.              # initial P1
         P2 = 2500.              # boundary P
         # call parent constructor with default values

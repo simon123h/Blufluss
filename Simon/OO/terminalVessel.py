@@ -7,9 +7,9 @@ class TerminalVessel(Compartment):
     # constructor
     def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
         # physical inital values
-        R = 8333333             # viscosity
+        R = 800000.             # viscosity
         L = 1.0                 # inertia
-        C = 1. / R              # compliance
+        C = 0.1 / R              # compliance
         Q1 = 0.             # boundary Q  0.3 mm/s
         Q2 = 0.             # initial Q2
         P1 = 2500.              # initial P1
