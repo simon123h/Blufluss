@@ -8,11 +8,13 @@ from heart import Heart
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tMax = 20.              # integration end time
-dt = 0.1                # time step size
+tMax = 5.              # integration end time
+dt = 0.01                # time step size
+
 
 # generate a ring of connected compartments
 cmpts = [Heart(), Artery(), TerminalVessel(), Artery()]
+cmpts = [Heart(), Artery(), Artery(), Artery()]
 cmpts[0].addNeighbour(cmpts[1])
 cmpts[1].addNeighbour(cmpts[2])
 cmpts[2].addNeighbour(cmpts[3])
@@ -21,8 +23,8 @@ cmpts[3].addNeighbour(cmpts[0])
 system = CompartmentSet(*cmpts)
 
 # integration and output
-with open("out/ringP.dat", "w+") as outputFileP:
-    with open("out/ringQ.dat", "w+") as outputFileQ:
+with open("out/humanP.dat", "w+") as outputFileP:
+    with open("out/humanQ.dat", "w+") as outputFileQ:
         t = Compartment.t0
         while t < tMax:
             t += dt

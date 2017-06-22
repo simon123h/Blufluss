@@ -11,6 +11,7 @@ class Compartment(object):
     # mathematical configuration
     t0 = 0.             # integration start time
     integrator = "dopri5"
+    nsteps = 10        # intermediate integration steps
 
     def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
         # physical property values
@@ -29,8 +30,8 @@ class Compartment(object):
         self.Q1 = Q1             # boundary Q1
         self.P2 = P2             # boundary P2
 
-        # integration configuration: dopri5 --> Runge-Kutta 4
-        self.r = ode(self.rhs).set_integrator(Compartment.integrator)
+        # integration configuration: dopri5 --> Runge-Kutta 4, nsteps: number of intermediate steps
+        self.r = ode(self.rhs).set_integrator(Compartment.integrator, nsteps=Compartment.nsteps)
         self.r.set_initial_value(self.y, Compartment.t0)
 
         # to each end connected compartments
@@ -75,11 +76,6 @@ class Compartment(object):
         if len(self.neighbours2) != 0:
             self.Q1 = sum([n.Q2 for n in self.neighbours2])
 
-    # boolean integration status
-    @property
-    def successful(self):
-        return self.r.successful()
-
     # time variable
     @property
     def t(self):
@@ -102,10 +98,10 @@ class Compartment(object):
 
     # integrate this single compartment up to time t with an arbitrary
     #  number of RK4 steps. returns the integration variables P1 and Q2
-    def integrate(self, t, steps=1):
-        i = 0
-        while self.r.successful() and i < steps:
-            i += 1
-            self.r.integrate(t * i / float(steps))
+    def integrate(self, t):
+        self.r.integrate(t)
         self.y = self.r.y
+        # set end of integration as new initial values
+        self.r = ode(self.rhs).set_integrator(Compartment.integrator, nsteps=Compartment.nsteps)
+        self.r.set_initial_value(self.y, t)
         return self.P1, self.Q2

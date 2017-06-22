@@ -14,10 +14,10 @@ class CompartmentSet(object):
             self.compartments += [compartment]
 
     # coherently integrate all compartments in the set
-    def integrate(self, t, steps=1):
+    def integrate(self, t):
         # integrate all compartments separately
         for cmpt in self.compartments:
-            cmpt.integrate(t, steps)
+            cmpt.integrate(t)
         # update each compartment bounds
         self.communicate()
 

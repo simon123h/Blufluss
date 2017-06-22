@@ -10,8 +10,8 @@ class TerminalVessel(Compartment):
         R = 8333333             # viscosity
         L = 1.0                 # inertia
         C = 1. / R              # compliance
-        Q1 = 0.0003             # boundary Q  0.3 mm/s
-        Q2 = 0.0003             # initial Q2
+        Q1 = 0.             # boundary Q  0.3 mm/s
+        Q2 = 0.             # initial Q2
         P1 = 2500.              # initial P1
         P2 = 2500.              # boundary P
         # call parent constructor with default values

@@ -5,11 +5,11 @@ from compartment import Compartment
 from subprocess import Popen, PIPE
 
 
-tMax = 10.              # integration end time
+tMax = 100.              # integration end time
 dt = 0.1                # time step size
 
 cmpt = Compartment(1., 1., 1., 1., 1., 1., 1.)
-
+# cmpt = Compartment(233333., 1., 1. / 233333., 2500., 0.0001, 5000., 0.0006)
 
 # integration and output
 with open("out/output.dat", "w+") as outputFile:
