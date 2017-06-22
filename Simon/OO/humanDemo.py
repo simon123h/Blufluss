@@ -33,4 +33,4 @@ with open("out/ringP.dat", "w+") as outputFileP:
 
 
 # call gnuplot for plotting
-Popen("gnuplot ringDemo.plt", shell=True, stdout=PIPE)
+Popen("gnuplot humanDemo.plt", shell=True, stdout=PIPE)
