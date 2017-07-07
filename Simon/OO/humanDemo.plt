@@ -14,7 +14,7 @@
     set cblabel 'P'
 
 	## axis range
-		set xrange [-0.5:3.5]
+		set xrange [-0.5:4.5]
 		set yrange [0:*]
 
 	## tics on the axes, background grid, key position
@@ -32,10 +32,11 @@
 
 ##### COMMANDS #####
   set view map
-  set label 1 "Herz" at -0.2,-0.2
-  set label 2 "Arterie" at 0.8,-0.2
-  set label 3 "Muskel" at 1.8,-0.2
-  set label 4 "Vene" at 2.8,-0.2
+  set label 1 "Herzvorhof" at -0.55,-0.2
+  set label 2 "-kammer" at 0.65,-0.2
+  set label 3 "Arterie" at 1.7,-0.2
+  set label 4 "Muskel" at 2.7,-0.2
+  set label 5 "Vene" at 3.8,-0.2
   plot dataFile matrix using 1:($2/100):3 notitle with image
 
 
