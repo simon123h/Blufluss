@@ -16,8 +16,7 @@ dt = 0.01                # time step size
 # generate a ring of connected compartments
 compartments = [
     Vorhof(
-        R=100.,
-        L=1.,
+        R=100000.,
         C=0.001,
         P1=800.,
         P2=800.,
@@ -25,8 +24,7 @@ compartments = [
         Q2=0.0003
     ),
     Herzkammer(
-        R=100.,
-        L=1.,
+        R=100000.,
         C=0.001,
         P1=800.,
         P2=800.,
@@ -44,8 +42,7 @@ compartments = [
     ),
     TerminalVessel(
         R=10000000.,
-        L=1.,
-        C=0.00000004,
+        C=0.00000005,
         P1=2500.,
         P2=2500.,
         Q1=0.0003,
