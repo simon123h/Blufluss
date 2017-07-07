@@ -53,10 +53,6 @@ class Compartment(object):
         self.Q1 = Q1
         self.P2 = P2
 
-    def setInitial(self, P1, Q2):
-        self.y = [P1, Q2]
-        self.r.set_initial_value(self.y, Compartment.t0)
-
     # if not connected already, add compartment to the list of neighbours
     # always connects to end #1 of self to end #2 of other
     def addNeighbour(self, other):
