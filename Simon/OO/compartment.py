@@ -13,7 +13,7 @@ class Compartment(object):
     integrator = "dopri5"
     nsteps = 10        # intermediate integration steps
 
-    def __init__(self, R=0., L=0., C=0., P1=0., Q2=0., P2=0., Q1=0.):
+    def __init__(self, R=0., L=0., C=0., P1=0., P2=0., Q1=0., Q2=0.):
         # physical property values
         self.R = R              # viscosity
         self.L = L              # inertia
