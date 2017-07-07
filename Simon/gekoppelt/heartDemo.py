@@ -11,7 +11,7 @@ from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
 tIntegration = 6.0       # integration end time
-tEinschwing = 0.
+tEinschwing = 1.
 dt = 0.01                # time step size
 
 
@@ -27,14 +27,14 @@ compartments = [
         Q2=0.0
     ),
     Vorhof(
-        C=0.00001,
+        C=0.0001,
         P1=10000.,
         P2=10000.,
         Q1=0.0,
         Q2=0.0
     ),
     Herzkammer(
-        C=0.0000001,
+        C=0.0000002,
         P1=10000.,
         P2=10000.,
         Q1=0.0,
