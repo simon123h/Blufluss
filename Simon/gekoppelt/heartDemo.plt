@@ -32,21 +32,21 @@
 
 ##### COMMANDS #####
   set view map
-  set label 1 "Herzvorhof" at screen 0.13,0.05
-  set label 2 "-kammer" at screen 0.29,0.05
-  set label 3 "Arterie" at screen 0.43,0.05
-  set label 4 "Muskel" at screen 0.57,0.05
-  set label 5 "Vene" at screen 0.72,0.05
+  set label 1 "Arterie" at screen 0.15,0.05
+  set label 2 "Vorhof" at screen 0.3,0.05
+  set label 3 "Kammer" at screen 0.43,0.05
+  set label 4 "Arterie" at screen 0.57,0.05
+  set label 5 "Arterie" at screen 0.71,0.05
   plot dataFile matrix using 1:($2/100):3 notitle with image
 
 
-  dataFile = "out/humanQ.dat"
-  set out 'out/plotQ.png'
-  set yrange[*:*]
-  stats dataFile matrix nooutput
-  set yrange[0:*]
-  maxrange = (STATS_max > -STATS_min) ? STATS_max : -STATS_min
-  set cbrange[-maxrange:maxrange]
-  set palette defined (-1 "blue", 0 "white", 1 "red")
-  set title "Durchflussrate Q"
-  replot
+    dataFile = "out/humanQ.dat"
+    set out 'out/plotQ.png'
+    set yrange[*:*]
+    stats dataFile matrix nooutput
+    set yrange[0:*]
+    maxrange = (STATS_max > -STATS_min) ? STATS_max : -STATS_min
+    set cbrange[-maxrange:maxrange]
+    set palette defined (-1 "blue", 0 "white", 1 "red")
+    set title "Durchflussrate Q"
+    replot

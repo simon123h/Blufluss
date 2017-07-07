@@ -7,7 +7,7 @@ class TerminalVessel(Compartment):
     def __init__(self,
                  R=10000000.,           # viscosity
                  L=1.,                  # inertia
-                 C=0.00000004,          # compliance
+                 C=0.0000005,          # compliance
                  P1=2500.,              # initial P1
                  P2=2500.,              # boundary P
                  Q1=0.0003,             # boundary Q  0.3 mm/s

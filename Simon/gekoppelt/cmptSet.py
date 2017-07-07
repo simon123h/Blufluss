@@ -7,6 +7,7 @@ The whole set can be integrated.
 class CompartmentSet(object):
     def __init__(self, *compartments):
         self.compartments = list(compartments)
+        self.communicate()
 
     # add a new compartment
     def addCompartment(self, compartment):
@@ -28,7 +29,7 @@ class CompartmentSet(object):
 
     # get Q values of each compartment in the set
     def getQvals(self):
-        return [c.Q2 - c.Q1 for c in self.compartments]
+        return [c.Q2 for c in self.compartments]
 
     # get P values of each compartment in the set
     def getPvals(self):
