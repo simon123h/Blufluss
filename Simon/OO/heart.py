@@ -1,6 +1,6 @@
 from compartment import Compartment
-from numpy import sin, cos, pi  # noqa
-
+import numpy as np
+from heartPulse import dPulse_dt
 
 # the heart, inherits from the Compartment class
 class Heart(Compartment):
@@ -10,27 +10,39 @@ class Heart(Compartment):
         # physical inital values
         R = 800000.             # viscosity
         L = R                 # inertia
-        C = 1. / R              # compliance
+		self.V_max = 0.13   			#Liter
+		self.V_min = 0.06			#Liter
+		self.E = 300000				#Pacal, fuer Arterien 150000 (die Haelfte)
+        C = 20./3/E*(V_max+V_min)/2            # compliance
         Q1 = 0.             # boundary Q  0.3 mm/s
         Q2 = 0.             # initial Q2
+		self.Qs = 0.0003
+		self.alpha = 0.002
         P1 = 2500.              # initial P1
         P2 = 2500.              # boundary P
         # call parent constructor with default values
         super(Heart, self).__init__(R=R, L=L, C=C, P1=P1, Q2=Q2, P2=P2, Q1=Q1)
-        # non oscillatory part of the parameters
-        self.R0 = self.R
-        self.C0 = self.C
-        self.L0 = self.L
         self.freq = 1.   # pulses per second
         self.amp = 0.01
+        self.y = [P1]
+        self.r.set_initial_value(self.y, Compartment.t0)
 
-    # same rhs as in Compartment class (unaltered), but modify the
-    # diameter of the heart (and thus R, L, C) in each step
+
+    # output flow is determined by Ohm's law (reduced form of the rhs)
+    @property
+    def Q2(self):
+		return self.Qs*(np.exp(self.alpha*(self.P1-self.P2))-1)
+
+    # the rhs of terminal vessel, reduced form of the Compartment rhs
     def rhs(self, t, y):
-        # self.R = self.R0 * (1. + self.amp * sin(self.freq * 2 * pi * self.t))
-        # self.C = self.C0 * (1. + self.amp * cos(self.freq * 2 * pi * self.t))
-        P1 = y[0] * (1. + self.amp * sin(self.freq * 2 * pi * self.t))
-        Q2 = y[1]  # valve
-        # self.Q1 = min(self.Q1, 0.)
-        return [(self.Q1 - Q2) / self.C,
-                (P1 - self.P2 - self.R * Q2) / self.L]
+        return [1/self.C*(self.Q2)]
+
+		
+
+class Vorhof(Heart):
+	pass
+	
+
+class Herzkammer(Heart):
+	def rhs(self, t, y):
+		return [1/self.C*(self.Q2) + dPulse_dt(t)]
