@@ -2,23 +2,24 @@
 
 from __future__ import print_function
 from compartment import Compartment
-from terminal import TerminalVessel
+from terminalVessel import TerminalVessel
 from artery import Artery
-from heart import Heart
+from heart import Herzkammer, Vorhof
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tMax = 6.              # integration end time
+tMax = 3.0              # integration end time
 tEinschwing = 10.
 dt = 0.01                # time step size
 
 
 # generate a ring of connected compartments
-cmpts = [Heart(), Artery(), TerminalVessel(), Artery()]
+cmpts = [Vorhof(), Herzkammer(), Artery(), TerminalVessel(), Artery()]
 cmpts[0].addNeighbour(cmpts[1])
 cmpts[1].addNeighbour(cmpts[2])
 cmpts[2].addNeighbour(cmpts[3])
-cmpts[3].addNeighbour(cmpts[0])
+cmpts[3].addNeighbour(cmpts[4])
+cmpts[4].addNeighbour(cmpts[0])
 
 system = CompartmentSet(*cmpts)
 
