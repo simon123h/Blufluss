@@ -1,3 +1,6 @@
+"""
+Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
+"""
 
 
 from __future__ import print_function
@@ -8,7 +11,7 @@ from heart import Herzkammer, Vorhof
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tIntegration = 3.0       # integration end time
+tIntegration = 4.0       # integration end time
 tEinschwing = 10.
 dt = 0.01                # time step size
 
@@ -16,46 +19,44 @@ dt = 0.01                # time step size
 # generate a ring of connected compartments
 compartments = [
     Vorhof(
-        R=100000.,
-        C=0.001,
-        P1=800.,
-        P2=800.,
-        Q1=0.0003,
-        Q2=0.0003
+        C=0.0001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
     ),
     Herzkammer(
-        R=100000.,
-        C=0.001,
-        P1=800.,
-        P2=800.,
-        Q1=0.0003,
-        Q2=0.0003
+        C=0.0000002,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
     ),
     Artery(
         R=1000000.,
-        L=3000.,
-        C=0.00000001,
+        L=300.,
+        C=0.0000001,
         P1=10000.,
         P2=10000.,
-        Q1=0.0003,
-        Q2=0.0003
+        Q1=0.0000,
+        Q2=0.000
     ),
     TerminalVessel(
         R=10000000.,
-        C=0.00000005,
-        P1=2500.,
-        P2=2500.,
-        Q1=0.0003,
-        Q2=0.0003
+        C=0.0000005,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
     ),
     Artery(
         R=1000000.,
-        L=3000.,
-        C=0.00000001,
+        L=300.,
+        C=0.0000001,
         P1=10000.,
         P2=10000.,
-        Q1=0.0003,
-        Q2=0.0003
+        Q1=0.0,
+        Q2=0.0
     )
 ]
 

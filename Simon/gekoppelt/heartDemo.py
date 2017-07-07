@@ -10,8 +10,8 @@ from heart import Herzkammer, Vorhof
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tIntegration = 6.0       # integration end time
-tEinschwing = 1.
+tIntegration = 4.0       # integration end time
+tEinschwing = 10.
 dt = 0.01                # time step size
 
 
