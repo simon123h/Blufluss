@@ -10,7 +10,7 @@ from heart import Herzkammer, Vorhof
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tIntegration = 0.1       # integration end time
+tIntegration = 6.0       # integration end time
 tEinschwing = 0.
 dt = 0.01                # time step size
 
@@ -19,44 +19,39 @@ dt = 0.01                # time step size
 compartments = [
     Artery(
         R=1000000.,
-        L=3000.,
+        L=300.,
+        C=0.0000001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
+    ),
+    Vorhof(
+        C=0.00001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
+    ),
+    Herzkammer(
+        C=0.0000001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0,
+        Q2=0.0
+    ),
+    Artery(
+        R=1000000.,
+        L=300.,
         C=0.0000001,
         P1=10000.,
         P2=10000.,
         Q1=0.0000,
-        Q2=0.0003
+        Q2=0.000
     ),
-    Artery(
-        R=1000000.,
-        L=3000.,
-        C=0.0000001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
-    ),
-    Artery(
-        R=1000000.,
-        L=3000.,
-        C=0.0000001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
-    ),
-    Artery(
-        R=1000000.,
-        L=3000.,
-        C=0.0000001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
-    ),
-    Artery(
-        R=1000000.,
-        L=3000.,
-        C=0.0000001,
+    TerminalVessel(
+        R=10000000.,
+        C=0.0000005,
         P1=10000.,
         P2=10000.,
         Q1=0.0,

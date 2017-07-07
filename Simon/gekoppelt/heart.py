@@ -6,26 +6,21 @@ from heartPulse import dPulse_dt
 # the heart, inherits from the Compartment class
 class Heart(Compartment):
     # constructor
-    def __init__(self,
-                 R=100.,            # viscosity
-                 L=1.,              # inertia
-                 C=0.001,           # compliance
-                 P1=800.,           # initial P1
-                 Q2=0.0003,         # initial Q2
-                 P2=800.,           # boundary P
-                 Q1=0.0003          # boundary Q  0.3 mm/s
-                 ):
-        self.Qs = 0.0003
-        self.alpha = 0.002
-        # call parent constructor with default values
+    def __init__(self, R, L, C, P1, P2, Q1, Q2):
         super(Heart, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
-        self.y = [P1]
+        self.Qs = 0.01
+        self.alpha = 0.0005
+        self.y = [self.P1]
         self.r.set_initial_value(self.y, Compartment.t0)
 
     # Herzklappe
     @property
     def Q2(self):
-        return self.Qs * (np.exp(self.alpha * (self.P1 - self.P2)) - 1)
+        dicht = True
+        if self.P1 - self.P2 < 0 and dicht:
+            return 0
+        else:
+            return self.Qs * (np.exp(self.alpha * (self.P1 - self.P2)) - 1)
 
     # the rhs of terminal vessel, reduced form of the Compartment rhs
     def rhs(self, t, y):
@@ -35,27 +30,27 @@ class Heart(Compartment):
 class Vorhof(Heart):
     # constructor
     def __init__(self,
-                 R=100.,            # viscosity
-                 L=1.,               # inertia
-                 C=0.001,          # compliance
+                 R=500.,              # viscosity
+                 L=1.,                # inertia
+                 C=0.00001,         # compliance
                  P1=800.,             # initial P1
-                 Q2=0.0003,             # initial Q2
-                 P2=800.,             # boundary P
-                 Q1=0.0003              # boundary Q  0.3 mm/s
+                 P2=800.,              # boundary P
+                 Q1=0.000,            # boundary Q  0.3 mm/s
+                 Q2=0.000             # initial Q2
                  ):
         super(Vorhof, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
-        # self.alpha = -1 * self.alpha    # TODO: ist das sinnvoll?
+
 
 class Herzkammer(Heart):
     # constructor
     def __init__(self,
-                 R=100.,              # viscosity
-                 L=1.,                # inertia
-                 C=0.001,             # compliance
+                 R=500.,              # viscosity
+                 L=300.,                # inertia
+                 C=0.0000001,         # compliance, smaller than usual, otherwise heart wont pump
                  P1=800.,             # initial P1
-                 P2=800.,             # boundary P
-                 Q1=0.0003,           # boundary Q  0.3 mm/s
-                 Q2=0.0003            # initial Q2
+                 P2=800.,              # boundary P
+                 Q1=0.0000,            # boundary Q  0.3 mm/s
+                 Q2=0.0000             # initial Q2
                  ):
         super(Herzkammer, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
 
