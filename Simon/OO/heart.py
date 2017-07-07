@@ -18,8 +18,8 @@ class Heart(Compartment):
         C = 0.01
         Q1 = 0.0003             # boundary Q  0.3 mm/s
         Q2 = 0.0003             # initial Q2
-        self.Qs = 0.0003
-        self.alpha = 0.06
+        self.Qs = 0.03
+        self.alpha = 0.002
         P1 = 10000.              # initial P1
         P2 = 10000.              # boundary P
         # call parent constructor with default values
