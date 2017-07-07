@@ -5,9 +5,9 @@ from compartment import Compartment
 class Artery(Compartment):
     # constructor
     def __init__(self,
-                 R=1000000.,            # viscosity
-                 L=3000.,               # inertia
-                 C=0.000001,          # compliance
+                 R=100000.,            # viscosity
+                 L=300.,               # inertia
+                 C=0.0000001,          # compliance
                  P1=10000.,             # initial P1
                  P2=10000.,             # boundary P
                  Q1=0.000,             # boundary Q  0.3 mm/s

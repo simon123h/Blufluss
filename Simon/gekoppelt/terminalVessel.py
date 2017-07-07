@@ -5,7 +5,7 @@ from compartment import Compartment
 class TerminalVessel(Compartment):
     # constructor
     def __init__(self,
-                 R=10000000.,           # viscosity
+                 R=1000000.,           # viscosity
                  L=1.,                  # inertia
                  C=0.0000005,          # compliance
                  P1=2500.,              # initial P1

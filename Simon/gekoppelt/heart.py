@@ -32,7 +32,7 @@ class Vorhof(Heart):
     def __init__(self,
                  R=500.,              # viscosity
                  L=1.,                # inertia
-                 C=0.00001,         # compliance
+                 C=0.0001,         # compliance
                  P1=800.,             # initial P1
                  P2=800.,              # boundary P
                  Q1=0.000,            # boundary Q  0.3 mm/s
@@ -46,7 +46,7 @@ class Herzkammer(Heart):
     def __init__(self,
                  R=500.,              # viscosity
                  L=300.,                # inertia
-                 C=0.0000001,         # compliance, smaller than usual, otherwise heart wont pump
+                 C=0.0000002,         # compliance, smaller than usual, otherwise heart wont pump
                  P1=800.,             # initial P1
                  P2=800.,              # boundary P
                  Q1=0.0000,            # boundary Q  0.3 mm/s
