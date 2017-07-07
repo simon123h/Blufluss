@@ -1,8 +1,8 @@
 from compartment import Compartment
-from numpy import sin, cos, pi
+from numpy import sin, cos, pi  # noqa
 
 
-# the heart %TODO implement
+# the heart, inherits from the Compartment class
 class Heart(Compartment):
 
     # constructor

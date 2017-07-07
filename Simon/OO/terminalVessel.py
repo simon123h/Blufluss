@@ -9,9 +9,9 @@ class TerminalVessel(Compartment):
         # physical inital values
         R = 800000.             # viscosity
         L = 1.0                 # inertia
-        C = 0.1 / R              # compliance
-        Q1 = 0.             # boundary Q  0.3 mm/s
-        Q2 = 0.             # initial Q2
+        C = 0.1 / R             # compliance
+        Q1 = 0.                 # boundary Q  0.3 mm/s
+        Q2 = 0.                 # initial Q2
         P1 = 2500.              # initial P1
         P2 = 2500.              # boundary P
         # call parent constructor with default values
@@ -23,10 +23,11 @@ class TerminalVessel(Compartment):
         self.y = [P1]
         self.r.set_initial_value(self.y, Compartment.t0)
 
+    # output flow is determined by Ohm's law (reduced form of the rhs)
     @property
     def Q2(self):
         return (self.P1 - self.P2) / self.R
 
-    # the rhs of the equation of the single compartment system
+    # the rhs of terminal vessel, reduced form of the Compartment rhs
     def rhs(self, t, y):
         return [(self.Q1 - self.Q2) / self.C]

@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 from compartment import Compartment
-from newTerminalVessel import TerminalVessel
+from terminal import TerminalVessel
 from artery import Artery
 from heart import Heart
 from cmptSet import CompartmentSet
