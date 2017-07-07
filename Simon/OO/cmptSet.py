@@ -28,7 +28,7 @@ class CompartmentSet(object):
 
     # get Q values of each compartment in the set
     def getQvals(self):
-        return [c.Q2 for c in self.compartments]
+        return [c.Q2 - c.Q1 for c in self.compartments]
 
     # get P values of each compartment in the set
     def getPvals(self):

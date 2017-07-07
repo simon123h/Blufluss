@@ -1,7 +1,7 @@
 from numpy import exp
 
 
-pulseDuration = 0.5   # length of the pulse
+pulseDuration = 0.65   # length of the pulse
 pulseInterval = 1.0   # one pulse every second
 steepness = 12.0
 

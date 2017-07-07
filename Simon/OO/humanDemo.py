@@ -8,32 +8,78 @@ from heart import Herzkammer, Vorhof
 from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
-tMax = 2.0              # integration end time
-tEinschwing = 0.
+tIntegration = 3.0       # integration end time
+tEinschwing = 10.
 dt = 0.01                # time step size
 
 
 # generate a ring of connected compartments
-cmpts = [Vorhof(), Herzkammer(), Artery(), TerminalVessel(), Artery()]
-cmpts[0].addNeighbour(cmpts[1])
-cmpts[1].addNeighbour(cmpts[2])
-cmpts[2].addNeighbour(cmpts[3])
-cmpts[3].addNeighbour(cmpts[4])
-cmpts[4].addNeighbour(cmpts[0])
+compartments = [
+    Vorhof(
+        R=100000.,
+        C=0.001,
+        P1=800.,
+        P2=800.,
+        Q1=0.0003,
+        Q2=0.0003
+    ),
+    Herzkammer(
+        R=100000.,
+        C=0.001,
+        P1=800.,
+        P2=800.,
+        Q1=0.0003,
+        Q2=0.0003
+    ),
+    Artery(
+        R=1000000.,
+        L=3000.,
+        C=0.00000001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0003,
+        Q2=0.0003
+    ),
+    TerminalVessel(
+        R=10000000.,
+        C=0.00000005,
+        P1=2500.,
+        P2=2500.,
+        Q1=0.0003,
+        Q2=0.0003
+    ),
+    Artery(
+        R=1000000.,
+        L=3000.,
+        C=0.00000001,
+        P1=10000.,
+        P2=10000.,
+        Q1=0.0003,
+        Q2=0.0003
+    )
+]
 
-system = CompartmentSet(*cmpts)
+# connect as a ring
+compartments[0].addNeighbour(compartments[1])
+compartments[1].addNeighbour(compartments[2])
+compartments[2].addNeighbour(compartments[3])
+compartments[3].addNeighbour(compartments[4])
+compartments[4].addNeighbour(compartments[0])
+system = CompartmentSet(*compartments)
 
 # integration and output
 with open("out/humanP.dat", "w+") as outputFileP:
     with open("out/humanQ.dat", "w+") as outputFileQ:
         t = Compartment.t0
-        while t < tMax + tEinschwing:
+        while t < tIntegration + tEinschwing:
             t += dt
             system.integrate(t)
             # print to file
             if t > tEinschwing:
-                print(" ".join([str(v) for v in system.getPvals()]), file=outputFileP)
-                print(" ".join([str(v) for v in system.getQvals()]), file=outputFileQ)
+                print(" ".join([str(v)
+                                for v in system.getPvals()]), file=outputFileP)
+                print(" ".join([str(v)
+                                for v in system.getQvals()]), file=outputFileQ)
 
 
 # call gnuplot for plotting
