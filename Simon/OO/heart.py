@@ -44,7 +44,7 @@ class Vorhof(Heart):
                  Q1=0.0003              # boundary Q  0.3 mm/s
                  ):
         super(Vorhof, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
-        self.alpha = -1*self.alpha
+        # self.alpha = -1 * self.alpha    # TODO: ist das sinnvoll?
 
 class Herzkammer(Heart):
     # constructor
