@@ -32,11 +32,11 @@
 
 ##### COMMANDS #####
   set view map
-  set label 1 "Herzvorhof" at -0.55,-0.2
-  set label 2 "-kammer" at 0.65,-0.2
-  set label 3 "Arterie" at 1.7,-0.2
-  set label 4 "Muskel" at 2.7,-0.2
-  set label 5 "Vene" at 3.8,-0.2
+  set label 1 "Herzvorhof" at screen 0.13,0.05
+  set label 2 "-kammer" at screen 0.29,0.05
+  set label 3 "Arterie" at screen 0.43,0.05
+  set label 4 "Muskel" at screen 0.57,0.05
+  set label 5 "Vene" at screen 0.72,0.05
   plot dataFile matrix using 1:($2/100):3 notitle with image
 
 
