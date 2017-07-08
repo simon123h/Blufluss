@@ -11,7 +11,7 @@ class Heart(Compartment):
         self.Qs = 0.005
         self.alpha = 0.0005
         self.y = [self.P1]
-        self.r.set_initial_value(self.y, Compartment.t0)
+        self.r.set_initial_value(self.y, 0)
 
     # Herzklappe
     @property

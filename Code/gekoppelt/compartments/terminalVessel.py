@@ -16,7 +16,7 @@ class TerminalVessel(Compartment):
         # call parent constructor with default values
         super(TerminalVessel, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
         self.y = [P1]
-        self.r.set_initial_value(self.y, Compartment.t0)
+        self.r.set_initial_value(self.y, 0)
 
     # output flow is determined by Ohm's law (reduced form of the rhs)
     @property

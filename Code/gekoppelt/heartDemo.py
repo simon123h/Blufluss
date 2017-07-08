@@ -4,11 +4,7 @@ Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
 
 
 from __future__ import print_function
-from compartment import Compartment
-from terminalVessel import TerminalVessel
-from artery import Artery
-from heart import Herzkammer, Vorhof
-from cmptSet import CompartmentSet
+from compartments import Herzkammer, Vorhof, Artery, TerminalVessel, CompartmentSet
 from subprocess import Popen, PIPE
 
 tIntegration = 4.0       # integration end time
@@ -51,7 +47,7 @@ system = CompartmentSet(*compartments)
 # integration and output
 with open("out/humanP.dat", "w+") as outputFileP:
     with open("out/humanQ.dat", "w+") as outputFileQ:
-        t = Compartment.t0
+        t = 0
         while t < tIntegration + tEinschwing:
             t += dt
             system.integrate(t)
