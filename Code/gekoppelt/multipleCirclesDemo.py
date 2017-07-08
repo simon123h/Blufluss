@@ -56,4 +56,5 @@ with open("out/humanP.dat", "w+") as outputFileP:
 
 
 # call gnuplot for plotting
-Popen("gnuplot herzklappeDemo.plt", shell=True, stdout=PIPE)
+labels = " ".join([c.label for c in circuits[0].compartments])
+Popen("gnuplot -e \"labels='" + labels + "'\" plotSet.plt", shell=True, stdout=PIPE)

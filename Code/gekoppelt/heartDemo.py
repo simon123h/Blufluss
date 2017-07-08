@@ -61,4 +61,4 @@ with open("out/humanP.dat", "w+") as outputFileP:
 
 # call gnuplot for plotting
 labels = " ".join([c.label for c in system.compartments])
-Popen("gnuplot -e \"labels='" + labels + "'\" plot.plt", shell=True, stdout=PIPE)
+Popen("gnuplot -e \"labels='" + labels + "'\" plotSet.plt", shell=True, stdout=PIPE)
