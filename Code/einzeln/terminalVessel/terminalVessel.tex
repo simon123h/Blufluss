@@ -1,0 +1,50 @@
+\documentclass[a4paper,12pt]{scrartcl}
+
+\usepackage{hyperref} % Links in pdf
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[locale=DE]{siunitx} % Einheiten mit \SI{5,2\pm0,2}{cm}
+\usepackage{icomma} % 2,5 statt 2, 5
+\usepackage[ngerman]{cleveref}
+\sisetup{separate-uncertainty} % \pm sieht gut aus
+\graphicspath{{graf/}} % Standardverzeichnis für Grafiken
+
+\renewcommand{\labelenumi}{\arabic{enumi})}
+\renewcommand{\labelenumii}{\alph{enumii})}
+
+\begin{document}
+\section*{Terminal Vessel}
+Mit Terminal Vessel ist der Verbraucher im Blutkreislauf gemeint, also die Kapillaren. Speziell betrachten wir all die vielen Kapillaren in einem Ensemble vereint als ein Compartment mit je einem Wert für R, L, C.\\
+Da das Terminal Vessel weit vom Herzen entfernt ist, unterliegen P und Q dort kaum noch den durch das schlagende Herz induzierten zeitlichen Schwankungen. Man kann daher argumentieren, dass die Trägheitseffekte des Blutes vernachlässigt werden können ($L=0$). So verschwindet der Term $\frac{dQ_2}{dt}$.\\
+Weiter könnte man auch $C=0$ annehmen, damit der Term $\frac{dP_1}{dt}$ verschwindet. Durch diese Einschränkung würde das Kapillarensemble zu einem einzigen \textit{ohmschen} Verbraucher. Wir beschränken uns aber zunächst auf $L=0$ und $C$ klein im Vergleich zu den Arterien.\\
+
+Der Druck an beiden Ende des Terminal Vessels beträgt nach \url{http://tsbiomed.blogspot.de/2012/12/notes-in-cardiovascular-function-and.html} etwa $P_1 = 5$kPa und $P_2 = \frac{P_1}{2} = 2,5$kPa.\\
+Der Widerstand wurde als etwa $R=10^{10}$ abgeschätzt, was nach der Simulation grob falsch erscheint. In der Formel für R ist nicht ganz klar, inwiefern die Zahl der parallelen Kapillaren einzugehen hat (Parallelschaltung $R^{-1} = \sum_i R_i^{-1}$?). Stattdessen kann man auch versuchen, den Widerstand in der Simulation so zu wählen, dass sich $P_1$ im statischen Fall auf den erwarteten Wert von 5kPa einstellt. $R$ ist so durch $P_1$ und $P_2$ und $Q_2$ eindeutig determiniert:
+\begin{align}
+  P_1 - P_2 &= R \cdot Q~~~\text{(ohmsches Gesetz)}\\
+  \Rightarrow R &\approx \SI{8.33E6}{Pa\cdot s / m}
+\end{align} mit der Blutflussgeschwindigkeit in Kapillaren von $Q_2 = Q_1 = 0.33$ mm / s.\\
+
+Die Compliance $C$ wird auf $1/R$ abgeschätzt.\\
+
+Es stellt sich dann im statischen Fall ein Gleichgewicht ein. Im Gleichgewicht verhält sich das Terminal Vessel dann wie ein ohmscher Widerstand und $C$ ist egal. Vgl. Abb. 1.\\
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.95\textwidth]{plot}
+  \caption{Verhalten eines Terminal Vessels mit den obigen Werten und nicht-Gleichgewicht Startwert von $P_1 = 2.5$kPa$\neq 5$kPa. Es stellt sich ein Gleichgewicht ein.}
+  \label{}
+\end{figure}
+
+\subsection*{Rolle der Compliance}
+Je kleiner $C$ ist, desto ohmscher verhält sich das Terminal Vessel. D.h.: Je kleiner $C$ ist, desto schneller stellt sich das Gleichgewicht ein. Je größer $C$ ist, desto länger dauert es.
+
+
+\subsection*{Kapillarensemble und R}
+Unter der Annahme, dass sich die Widerstände (wie im elektronischen) folgendermaßen parallel schalten: $R^{-1} = \sum_i R_i^{-1}$, und der Widerstand eines einzelnen Kapillars bei $10^{10}$ liegt, müsste es etwa $10^3$ - $10^4$ parallele Kapillare geben. Laut \url{http://systemdesign.ch/wiki/Blutkreislauf} gibt es im gesamten Körper etwa $10^9$ parallele Kapillare.
+
+
+\end{document}
