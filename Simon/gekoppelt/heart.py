@@ -33,12 +33,14 @@ class Vorhof(Heart):
                  R=500.,              # viscosity
                  L=1.,                # inertia
                  C=0.0001,         # compliance
-                 P1=800.,             # initial P1
-                 P2=800.,              # boundary P
+                 P1=1200.,             # initial P1
+                 P2=1200.,              # boundary P
                  Q1=0.000,            # boundary Q  0.3 mm/s
                  Q2=0.000             # initial Q2
                  ):
         super(Vorhof, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
+        self.Qs = 0.005
+        self.alpha = 0.0005
 
 
 class Herzkammer(Heart):
@@ -47,13 +49,15 @@ class Herzkammer(Heart):
                  R=500.,              # viscosity
                  L=300.,                # inertia
                  C=0.0000002,         # compliance, smaller than usual, otherwise heart wont pump
-                 P1=800.,             # initial P1
-                 P2=800.,              # boundary P
+                 P1=13000.,             # initial P1
+                 P2=13000.,              # boundary P
                  Q1=0.0000,            # boundary Q  0.3 mm/s
                  Q2=0.0000             # initial Q2
                  ):
         super(Herzkammer, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
         self.amp = 50   # needed? how big is this factor?? TODO!
+        self.Qs = 0.005
+        self.alpha = 0.0005
 
     def rhs(self, t, y):
         return [(self.Q1 - self.Q2) / self.C + self.amp * dPulse_dt(t)]

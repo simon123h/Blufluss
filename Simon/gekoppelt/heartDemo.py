@@ -1,6 +1,7 @@
 """
-Um das Herz auf Herz und Nieren zu testen ;-)
+Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
 """
+
 
 from __future__ import print_function
 from compartment import Compartment
@@ -11,51 +12,37 @@ from cmptSet import CompartmentSet
 from subprocess import Popen, PIPE
 
 tIntegration = 4.0       # integration end time
-tEinschwing = 10.
+tEinschwing = 16.
 dt = 0.01                # time step size
 
 
 # generate a ring of connected compartments
 compartments = [
-    Artery(
-        R=1000000.,
-        L=300.,
-        C=0.0000001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
-    ),
     Vorhof(
         C=0.0001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
+        P1=9000,
+        P2=9000
     ),
     Herzkammer(
-        C=0.0000002,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
+        C=0.0000005
     ),
     Artery(
-        R=1000000.,
-        L=300.,
-        C=0.0000001,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0000,
-        Q2=0.000
+        R=100000.,
+        L=1.,
+        C=0.0000001
     ),
     TerminalVessel(
-        R=10000000.,
-        C=0.0000005,
-        P1=10000.,
-        P2=10000.,
-        Q1=0.0,
-        Q2=0.0
+        R=1000000.,
+        C=0.0000001,
+        P1=9000,
+        P2=9000
+    ),
+    Artery(
+        R=100000.,
+        L=300.,
+        C=0.0000001,
+        P1=9000,
+        P2=9000
     )
 ]
 
@@ -83,4 +70,4 @@ with open("out/humanP.dat", "w+") as outputFileP:
 
 
 # call gnuplot for plotting
-Popen("gnuplot heartDemo.plt", shell=True, stdout=PIPE)
+Popen("gnuplot humanDemo.plt", shell=True, stdout=PIPE)
