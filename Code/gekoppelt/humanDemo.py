@@ -74,9 +74,9 @@ with open("out/humanP.dat", "w+") as outputFileP:
             # print to file
             if t > tEinschwing:
                 print(" ".join([str(v)
-                                for v in system.P1()]), file=outputFileP)
+                                for v in system.P1]), file=outputFileP)
                 print(" ".join([str(v)
-                                for v in system.Q2()]), file=outputFileQ)
+                                for v in system.Q2]), file=outputFileQ)
 
 
 # call gnuplot for plotting
