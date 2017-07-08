@@ -7,7 +7,7 @@ class Artery(Compartment):
     def __init__(self,
                  R=100000.,            # viscosity
                  L=300.,               # inertia
-                 C=0.0000001,          # compliance
+                 C=0.0000002,          # compliance
                  P1=10000.,             # initial P1
                  P2=10000.,             # boundary P
                  Q1=0.000,             # boundary Q  0.3 mm/s
