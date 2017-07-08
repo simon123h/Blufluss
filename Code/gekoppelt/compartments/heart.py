@@ -32,13 +32,14 @@ class Heart(Compartment):
             return self.Qs * (np.exp(self.alpha * (self.P1 - self.P2)) - 1)
             return (self.P1 - self.P2) / self.R
 
-
     # the rhs of terminal vessel, reduced form of the Compartment rhs
     def rhs(self, t, y):
         return [(self.Q1 - self.Q2) / self.C]
 
 
 class Vorhof(Heart):
+    label = "Vorhof"
+
     # constructor
     def __init__(self,
                  R=400000.,              # viscosity
@@ -53,6 +54,8 @@ class Vorhof(Heart):
 
 
 class Herzkammer(Heart):
+    label = "-kammer"
+
     # constructor
     def __init__(self,
                  R=400000.,              # viscosity
@@ -63,7 +66,8 @@ class Herzkammer(Heart):
                  Q1=0.0000,            # boundary Q  0.3 mm/s
                  Q2=0.0000             # initial Q2
                  ):
-        super(Herzkammer, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
+        super(Herzkammer, self).__init__(
+            R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
         self.amp = 60   # needed? how big is this factor?? TODO!
 
     def rhs(self, t, y):

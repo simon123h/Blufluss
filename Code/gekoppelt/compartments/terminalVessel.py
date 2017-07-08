@@ -3,6 +3,8 @@ from compartment import Compartment
 
 # a terminal compartment, such as a set of muscle arteries
 class TerminalVessel(Compartment):
+    label = "Muskel"
+
     # constructor
     def __init__(self,
                  R=10000000.,           # viscosity
@@ -14,7 +16,8 @@ class TerminalVessel(Compartment):
                  Q2=0.000              # initial Q2
                  ):
         # call parent constructor with default values
-        super(TerminalVessel, self).__init__(R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
+        super(TerminalVessel, self).__init__(
+            R=R, L=L, C=C, P1=P1, P2=P2, Q1=Q1, Q2=Q2)
         self.y = [P1]
         self.r.set_initial_value(self.y, 0)
 

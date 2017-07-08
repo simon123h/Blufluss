@@ -3,6 +3,7 @@ from compartment import Compartment
 
 # a simple artery
 class Artery(Compartment):
+    label = "Arterie"
     # constructor
     def __init__(self,
                  R=100000.,            # viscosity

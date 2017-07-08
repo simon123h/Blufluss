@@ -5,7 +5,7 @@ Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
 
 from __future__ import print_function
 from compartments import Herzkammer, Vorhof, Artery, TerminalVessel, CompartmentSet
-from subprocess import Popen, PIPE
+from plotting import plot
 
 tIntegration = 4.0       # integration end time
 tEinschwing = 16.
@@ -45,20 +45,15 @@ compartments[4].addNeighbour(compartments[0])
 system = CompartmentSet(*compartments)
 
 # integration and output
-with open("out/humanP.dat", "w+") as outputFileP:
-    with open("out/humanQ.dat", "w+") as outputFileQ:
-        t = 0
-        while t < tIntegration + tEinschwing:
-            t += dt
-            system.integrate(t)
-            # print to file
-            if t > tEinschwing:
-                print(" ".join([str(v)
-                                for v in system.P1]), file=outputFileP)
-                print(" ".join([str(v)
-                                for v in system.Q2]), file=outputFileQ)
+t = 0
+P1vals = []
+Q2vals = []
+while t < tIntegration + tEinschwing:
+    t += dt
+    system.integrate(t)
+    # print to file
+    if t > tEinschwing:
+        P1vals.append(system.P1)
+        Q2vals.append(system.Q2)
 
-
-# call gnuplot for plotting
-labels = " ".join([c.label for c in system.compartments])
-Popen("gnuplot -e \"labels='" + labels + "'\" plot.plt", shell=True, stdout=PIPE)
+plot(P1vals, Q2vals)

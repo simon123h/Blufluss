@@ -17,6 +17,7 @@ class Compartment(object):
     # mathematical configuration
     integrator = "dopri5"
     nsteps = 500        # intermediate integration steps
+    label = "Compartment"
 
     def __init__(self, R=0., L=0., C=0., P1=0., P2=0., Q1=0., Q2=0.):
         # physical property values
