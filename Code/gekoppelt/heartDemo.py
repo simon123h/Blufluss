@@ -27,7 +27,7 @@ compartments = [
     ),
     TerminalVessel(
         R=10000000.,
-        C=0.0000001
+        C=0.000001
     ),
     Artery(
         R=100000.,
