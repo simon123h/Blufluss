@@ -1,4 +1,10 @@
-from scipy.integrate import ode
+
+from __future__ import print_function
+try:
+    from scipy.integrate import ode
+except ImportError, e:
+    print("Module 'scipy' is not installed!")
+    print("Type 'pip install scipy' to install it.")
 
 """
 Class for a single compartment. It contains all related
@@ -29,8 +35,10 @@ class Compartment(object):
         self.Q1 = Q1             # boundary Q1
         self.P2 = P2             # boundary P2
 
-        # integration configuration: dopri5 --> Runge-Kutta 4, nsteps: number of intermediate steps
-        self.r = ode(self.rhs).set_integrator(Compartment.integrator, nsteps=Compartment.nsteps)
+        # integration configuration: dopri5 --> Runge-Kutta 4, nsteps: number
+        # of intermediate steps
+        self.r = ode(self.rhs).set_integrator(
+            Compartment.integrator, nsteps=Compartment.nsteps)
         self.r.set_initial_value(self.y, 0)
 
         # to each end connected compartments
@@ -97,6 +105,7 @@ class Compartment(object):
         self.r.integrate(t)
         self.y = self.r.y
         # set end of integration as new initial values
-        self.r = ode(self.rhs).set_integrator(Compartment.integrator, nsteps=Compartment.nsteps)
+        self.r = ode(self.rhs).set_integrator(
+            Compartment.integrator, nsteps=Compartment.nsteps)
         self.r.set_initial_value(self.y, t)
         return self.P1, self.Q2

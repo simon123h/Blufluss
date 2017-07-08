@@ -1,5 +1,11 @@
+
+from __future__ import print_function
+try:
+    import numpy as np
+except ImportError, e:
+    print("Module 'numpy' is not installed!")
+    print("Type 'pip install numpy' to install it.")
 from compartment import Compartment
-import numpy as np
 from heartPulse import dPulse_dt
 
 

@@ -27,10 +27,22 @@ class CompartmentSet(object):
         for cmpt in self.compartments:
             cmpt.communicate()
 
-    # get Q values of each compartment in the set
-    def getQvals(self):
-        return [c.Q2 for c in self.compartments]
-
-    # get P values of each compartment in the set
-    def getPvals(self):
+    # get P1 values of each compartment in the set
+    @property
+    def P1(self):
         return [c.P1 for c in self.compartments]
+
+    # get P2 values of each compartment in the set
+    @property
+    def P2(self):
+        return [c.P2 for c in self.compartments]
+
+    # get Q1 values of each compartment in the set
+    @property
+    def Q1(self):
+        return [c.Q1 for c in self.compartments]
+
+    # get Q2 values of each compartment in the set
+    @property
+    def Q2(self):
+        return [c.Q2 for c in self.compartments]
