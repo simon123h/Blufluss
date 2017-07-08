@@ -4,11 +4,11 @@ Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
 
 
 from __future__ import print_function
-from compartments import Vorhof, Artery, CompartmentSet, Herzkammer
+from compartments import Vorhof, Artery, CompartmentSet, Herzkammer, TerminalVessel
 from subprocess import Popen, PIPE
 
 tIntegration = 4.0       # integration end time
-tEinschwing = 10.
+tEinschwing = 2.
 dt = 0.01                # time step size
 
 
@@ -17,26 +17,31 @@ theHeart = [
     Vorhof(),
     Herzkammer()
 ]
+theHeart[0].addNeighbour(theHeart[1])
 
 # create a list of blood circuits, each sharing the same heart
-circuits = []
+compartments = []
+compartments += theHeart
 numberOfCircuits = 2
 for i in range(numberOfCircuits):
     # create a new circuit
-    compartments = theHeart + [
+    newCircuit = [
         Artery(),
-        Artery(),
+        TerminalVessel(),
         Artery()
     ]
+    # add to list of all compartments
+    compartments += newCircuit
 
     # connect as a ring
-    compartments[0].addNeighbour(compartments[1])
-    compartments[1].addNeighbour(compartments[2])
-    compartments[2].addNeighbour(compartments[3])
-    compartments[3].addNeighbour(compartments[4])
-    compartments[4].addNeighbour(compartments[0])
-    # append it to the list of circuits
-    circuits.append(CompartmentSet(*compartments))
+    theHeart[1].addNeighbour(newCircuit[0])
+    newCircuit[0].addNeighbour(newCircuit[1])
+    newCircuit[1].addNeighbour(newCircuit[2])
+    newCircuit[2].addNeighbour(theHeart[0])
+
+
+system = CompartmentSet(*compartments)
+subsystem = CompartmentSet(*(theHeart + newCircuit))
 
 
 # integration and output
@@ -45,16 +50,15 @@ with open("out/humanP.dat", "w+") as outputFileP:
         t = 0
         while t < tIntegration + tEinschwing:
             t += dt
-            for system in circuits:
-                system.integrate(t)
+            system.integrate(t)
             # print to file
             if t > tEinschwing:
                 print(" ".join([str(v)
-                                for v in circuits[0].P1]), file=outputFileP)
+                                for v in subsystem.P1]), file=outputFileP)
                 print(" ".join([str(v)
-                                for v in circuits[0].Q2]), file=outputFileQ)
+                                for v in subsystem.Q2]), file=outputFileQ)
 
 
 # call gnuplot for plotting
-labels = " ".join([c.label for c in circuits[0].compartments])
+labels = " ".join([c.label for c in subsystem.compartments])
 Popen("gnuplot -e \"labels='" + labels + "'\" plot.plt", shell=True, stdout=PIPE)

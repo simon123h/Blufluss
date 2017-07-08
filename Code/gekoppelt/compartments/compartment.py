@@ -6,6 +6,7 @@ except ImportError, e:
     print("Module 'scipy' is not installed!")
     print("Type 'pip install scipy' to install it.")
 
+
 """
 Class for a single compartment. It contains all related
 physical variables and the integration method. Also it provides
@@ -76,9 +77,10 @@ class Compartment(object):
     # TODO: ggf. eigene Connector-Klasse fuer besondere Verzweigungen
     def communicate(self):
         if len(self.neighbours1) != 0:
-            self.P2 = sum([n.P1 for n in self.neighbours1])
+            # ueber Druecke mitteln
+            self.P2 = sum([n.P1 for n in self.neighbours1]) / float(len(self.neighbours1))
         if len(self.neighbours2) != 0:
-            self.Q1 = sum([n.Q2 for n in self.neighbours2])
+            self.Q1 = sum([n.Q2 / float(len(n.neighbours1)) for n in self.neighbours2])
 
     # time variable
     @property
