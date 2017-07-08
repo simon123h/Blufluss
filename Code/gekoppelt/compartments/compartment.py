@@ -9,7 +9,6 @@ some functionality for interaction with neighboring compartments.
 
 class Compartment(object):
     # mathematical configuration
-    t0 = 0.             # integration start time
     integrator = "dopri5"
     nsteps = 500        # intermediate integration steps
 
@@ -32,7 +31,7 @@ class Compartment(object):
 
         # integration configuration: dopri5 --> Runge-Kutta 4, nsteps: number of intermediate steps
         self.r = ode(self.rhs).set_integrator(Compartment.integrator, nsteps=Compartment.nsteps)
-        self.r.set_initial_value(self.y, Compartment.t0)
+        self.r.set_initial_value(self.y, 0)
 
         # to each end connected compartments
         self.neighbours1 = []
