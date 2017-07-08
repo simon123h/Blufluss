@@ -5,11 +5,11 @@ from compartment import Compartment
 class TerminalVessel(Compartment):
     # constructor
     def __init__(self,
-                 R=1000000.,           # viscosity
-                 L=1.,                  # inertia
-                 C=0.0000005,          # compliance
-                 P1=3500.,              # initial P1
-                 P2=3500.,              # boundary P
+                 R=10000000.,           # viscosity
+                 L=300.,                  # inertia
+                 C=0.0000001,          # compliance
+                 P1=10000.,              # initial P1
+                 P2=10000.,              # boundary P
                  Q1=0.000,             # boundary Q  0.3 mm/s
                  Q2=0.000              # initial Q2
                  ):

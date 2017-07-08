@@ -19,30 +19,24 @@ dt = 0.01                # time step size
 # generate a ring of connected compartments
 compartments = [
     Vorhof(
-        C=0.0001,
-        P1=9000,
-        P2=9000
+        C=0.000005
     ),
     Herzkammer(
-        C=0.0000005
-    ),
-    Artery(
-        R=100000.,
-        L=1.,
         C=0.0000001
-    ),
-    TerminalVessel(
-        R=1000000.,
-        C=0.0000001,
-        P1=9000,
-        P2=9000
     ),
     Artery(
         R=100000.,
         L=300.,
-        C=0.0000001,
-        P1=9000,
-        P2=9000
+        C=0.0000001
+    ),
+    TerminalVessel(
+        R=10000000.,
+        C=0.0000001
+    ),
+    Artery(
+        R=100000.,
+        L=300.,
+        C=0.0000001
     )
 ]
 
