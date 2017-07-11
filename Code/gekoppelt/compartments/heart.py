@@ -3,8 +3,7 @@ from __future__ import print_function
 try:
     import numpy as np
 except ImportError, e:
-    print("Module 'numpy' is not installed!")
-    print("Type 'pip install numpy' to install it.")
+    raise ImportError("Module 'numpy' is not installed, type 'pip install numpy' to install it.")
 from compartment import Compartment
 from heartPulse import dPulse_dt
 

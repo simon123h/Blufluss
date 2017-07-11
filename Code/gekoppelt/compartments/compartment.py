@@ -3,8 +3,7 @@ from __future__ import print_function
 try:
     from scipy.integrate import ode
 except ImportError, e:
-    print("Module 'scipy' is not installed!")
-    print("Type 'pip install scipy' to install it.")
+    raise ImportError("Module 'scipy' is not installed, type 'pip install scipy' to install it.")
 
 
 """
