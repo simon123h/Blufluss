@@ -4,6 +4,7 @@ Simulation eines simplen Blutkreislaufs des menschlichen Koerpers
 
 
 from __future__ import print_function
+import os
 from compartments import Vorhof, Artery, CompartmentSet, Herzkammer, TerminalVessel
 from subprocess import Popen, PIPE
 
@@ -45,6 +46,8 @@ subsystem = CompartmentSet(*(theHeart + newCircuit))
 
 
 # integration and output
+if not os.path.exists('out'):
+    os.makedirs('out')
 with open("out/humanP.dat", "w+") as outputFileP:
     with open("out/humanQ.dat", "w+") as outputFileQ:
         t = 0
