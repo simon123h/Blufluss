@@ -61,6 +61,9 @@ class Compartment(object):
         self.Q1 = Q1
         self.P2 = P2
 
+    def setLabel(self, label):
+        self.label = label
+
     # if not connected already, add compartment to the list of neighbours
     # always connects to end #1 of self to end #2 of other
     def addNeighbour(self, other):
