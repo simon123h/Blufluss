@@ -35,4 +35,8 @@ if __name__ == '__main__':
     t = np.linspace(t0, t0 + pulseInterval, 500)
     vals = [pulse(tStep) for tStep in t]
     plt.plot(t, vals)
+    plt.xlabel("t [s]")
+    plt.ylabel("Herzvolumen V []")
+    plt.margins(0, 0.1)
+    plt.savefig("heartPulse.png")
     plt.show()
